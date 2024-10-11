@@ -31,6 +31,7 @@ npx hardhat test ./test/NFT.ts --network hardhat
 ```
 
 ## Deploy the Contract
+Due to inconsistencies in the deployed environments (e.g., inconsistencies with the deployer account), you might need to manually delete the `ignition/deployments` folder before deploying contract.
 
 ```bash
 npx hardhat ignition deploy ./ignition/modules/NFT.ts
