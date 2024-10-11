@@ -1,4 +1,4 @@
-<!-- ![Soneium Example Header](/assets/GM_Banner.jpg) -->
+# Soneium Examples
 
 <div align="center">
   <img src="./assets/GM_Banner.jpg" alt="Banner" height="300px"/>
@@ -20,8 +20,6 @@
 </p>
 
 <br />
-
-# Soneium-example
 
 #### Contracts
 
