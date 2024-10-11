@@ -1,5 +1,3 @@
-# Soneium Examples
-
 <div align="center">
   <img src="./assets/GM_Banner.jpg" alt="Banner" height="300px"/>
 </div>
@@ -10,8 +8,6 @@
   Tool examples to kickstart your next project on Soneium!
 </p>
 
-<br />
-
 <p align="center">
   <a href="https://docs.soneium.org/docs/" target="_blank" rel="noreferrer">Documentation</a> •
   <a href="https://soneium.org/" target="_blank" rel="noreferrer">Website</a> •
@@ -20,6 +16,8 @@
 </p>
 
 <br />
+
+# Soneium Examples
 
 #### Contracts
 
