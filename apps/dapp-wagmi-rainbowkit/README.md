@@ -1,4 +1,4 @@
-## WAGMI Tutorial
+## WAGMI + RainbowKit Demo
 This repository contains the demo app for minting NFTs on Soneium Minato networks.
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), [Wagmi](https://wagmi.sh/), [Viem](https://viem.sh/), and [RainbowKit](https://www.rainbowkit.com/).
 
