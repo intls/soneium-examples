@@ -6,26 +6,25 @@ import {
   useBalance,
   useChainId,
   usePublicClient,
+  useReadContract,
   useSwitchChain,
   useWalletClient,
 } from "wagmi";
-import NFT_ABI from "../modules//wagmi/abi/DemoNFT";
-import styles from "./page.module.css";
 import { soneiumMinato } from "viem/chains";
+import NFT_ABI from "../modules/wagmi/abi/DemoNFT";
+import styles from "./page.module.css";
 
 const nftContractAddress = "0xFd0dA2fC3ac7D18D133b6A87379b80165bF04E14";
 const faucetDocs = "https://docs.soneium.org/docs/builders/tools/faucets";
 
 export default function Home(): JSX.Element {
   const [txDetails, setTxDetails] = useState<string>("");
-  const account = useAccount();
-  const walletAddress = account?.address;
+  const { address: walletAddress } = useAccount();
 
+  const { switchChain } = useSwitchChain();
   const connectedId = useChainId();
   const chainId = soneiumMinato.id;
   const isConnectedToMinato = connectedId === soneiumMinato.id;
-
-  const { switchChain } = useSwitchChain();
 
   const { data: walletClient } = useWalletClient({
     chainId,
@@ -43,10 +42,18 @@ export default function Home(): JSX.Element {
   });
   const isBalanceZero = bal?.value.toString() === "0";
 
+  const { data, isFetched, refetch } = useReadContract({
+    abi: NFT_ABI,
+    address: nftContractAddress,
+    functionName: "balanceOf",
+    args: [walletAddress as Address],
+  });
+
   async function mintNft(): Promise<void> {
     if (!walletClient || !publicClient || !walletAddress) return;
     try {
       setIsPending(true);
+      setTxDetails("");
       const tx = {
         account: walletAddress as Address,
         address: nftContractAddress as Address,
@@ -60,6 +67,7 @@ export default function Home(): JSX.Element {
         hash,
       });
       setTxDetails(`https://explorer-testnet.soneium.org/tx/${hash}`);
+      await refetch();
     } catch (error) {
       console.error(error);
     } finally {
@@ -67,12 +75,32 @@ export default function Home(): JSX.Element {
     }
   }
 
+  function textNftBalances(bal: string): string {
+    const balance = Number(bal);
+    if (balance > 1) {
+      return `You have ${balance} NFTs`;
+    } else if (balance === 1) {
+      return `You have ${balance} NFT`;
+    } else {
+      return `You don't own any NFTs yet`;
+    }
+  }
   useEffect(() => {
     setTxDetails("");
   }, [walletAddress]);
 
-  return (
+  // Memo: display the page after fetching the NFT balance
+  return !isFetched ? (
+    <div />
+  ) : (
     <div className={styles.container}>
+      <div className={styles.rowBalance}>
+        {walletAddress && (
+          <span>{textNftBalances(data?.toString() || "0")}</span>
+        )}
+      </div>
+      <br />
+
       <button
         disabled={
           isPending || !walletAddress || isBalanceZero || !isConnectedToMinato
@@ -99,22 +127,6 @@ export default function Home(): JSX.Element {
       )}
 
       {walletAddress && isBalanceZero && (
-        <div className={styles.rowChecker}>
-          <span className={styles.textError}>
-            You don't have enough ETH balance to mint NFT
-          </span>
-          <a
-            href={faucetDocs}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.txLink}
-          >
-            ETH Faucet
-          </a>
-        </div>
-      )}
-
-      {chainId !== soneiumMinato.id && (
         <div className={styles.rowChecker}>
           <span className={styles.textError}>
             You don't have enough ETH balance to mint NFT
