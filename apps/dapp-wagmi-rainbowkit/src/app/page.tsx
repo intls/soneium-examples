@@ -14,7 +14,8 @@ import { soneiumMinato } from "viem/chains";
 import NFT_ABI from "../modules/wagmi/abi/DemoNFT";
 import styles from "./page.module.css";
 
-const nftContractAddress = "0xFd0dA2fC3ac7D18D133b6A87379b80165bF04E14";
+// Todo: Update to the correct address for the deployed contract
+const nftContractAddress = "0x509020Ac6410142F3146f0CdFF25701010073b7f";
 const faucetDocs = "https://docs.soneium.org/docs/builders/tools/faucets";
 
 export default function Home(): JSX.Element {

@@ -13,7 +13,7 @@ contract DemoNFT is ERC721, ERC721Enumerable, Ownable {
         address initialOwner
     ) ERC721("DemoNFT", "DNFT") Ownable(initialOwner) {}
 
-    // Memo: the function can be called by anyone
+    /// @dev the function can be called by anyone
     function safeMint(address to) public {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
