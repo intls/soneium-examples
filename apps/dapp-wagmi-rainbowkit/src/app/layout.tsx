@@ -5,7 +5,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Wagmi + Rainbowkit Demo App",
+  title: "WAGMI + RainbowKit Demo App",
   description:
     "A Demo app for minting NFTs on Soneium Minato by using WAGMI and Rainbowkit.",
 };
