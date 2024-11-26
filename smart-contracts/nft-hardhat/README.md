@@ -8,18 +8,18 @@ This project demonstrates a basic Hardhat use case with a sample NFT contract, a
 pnpm i
 ```
 
-## Compile the Contract
-
-```bash
-npx hardhat compile
-```
-
 ## Set the Private Key for Deployer
 
 Use Hardhat’s configuration variables manager to set the private key:
 
 ```bash
 npx hardhat vars set PRIVATE_KEY
+```
+
+## Compile the Contract
+
+```bash
+npx hardhat compile
 ```
 
 ## Test the Contract
