@@ -25,7 +25,7 @@
 
 #### Indexer
 
-- [The Graph Example](https://github.com/Soneium/soneium-example/tree/main/indexer/example-the-graph)
+- [The Graph Example](https://github.com/Soneium/soneium-example/tree/main/indexer/the-graph)
 
 #### Web Apps
 
