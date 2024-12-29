@@ -6,7 +6,7 @@ import {
   clearStore,
   describe,
   test,
-} from "matchstick-as/assembly/index";
+} from "matchstick-as";
 import { handleTransferEvent } from "../src/demo-nft";
 import { createTransferEvent } from "./demo-nft-utils";
 
@@ -16,7 +16,7 @@ describe("Describe entity assertions", () => {
       "0x0000000000000000000000000000000000000001"
     );
     const to = Address.fromString("0x0000000000000000000000000000000000000002");
-    const tokenId = new BigInt(0);
+    const tokenId = BigInt.fromI32(0);
     const newTransferEvent = createTransferEvent(from, to, tokenId);
     handleTransferEvent(newTransferEvent);
   });
